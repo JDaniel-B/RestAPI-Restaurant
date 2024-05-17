@@ -1,8 +1,8 @@
+import { clientService } from "../../services/mobile/client.service.js";
 import { authService } from "../../services/web/auth.service.js";
-import { userService } from "../../services/web/user.service.js";
 import { generatePassword } from "../../utils/generate-password.js";
 
-const service = new userService();
+const service = new clientService();
 const serviceAuth = new authService();
 
 const find = async (req, res, next) => {
@@ -17,7 +17,7 @@ const find = async (req, res, next) => {
   }
 };
 
-const create = async (req, res, next) => {
+const register = async (req, res, next) => {
   const data = req.body;
   try {
     const resultAuth = await serviceAuth.login(data);
@@ -28,7 +28,7 @@ const create = async (req, res, next) => {
       });
     } else {
       const passwordHash = await generatePassword();
-      const user = await service.create(data, passwordHash);
+      const user = await service.register(data, passwordHash);
       return res.send({
         isValid: true,
         message: "Usuario Creado Exitosamente",
@@ -39,4 +39,13 @@ const create = async (req, res, next) => {
   }
 };
 
-export { find, create };
+const update = async (req, res, next) => {
+  const data = req.body;
+  const { id } = req.params;
+  try {
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { find, register, update };
