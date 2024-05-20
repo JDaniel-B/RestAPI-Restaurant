@@ -1,6 +1,6 @@
 import { pool } from "../connect-bd.js";
 
-export class login {
+export class authService {
   constructor() {
     this.pool = pool;
   }
