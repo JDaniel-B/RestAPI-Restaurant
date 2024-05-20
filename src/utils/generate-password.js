@@ -14,7 +14,7 @@ export const generatePassword = async () => {
 
   console.log(password);
 
-  const passwordHash = await bcrypt.hash(contrasenaSegura, 10);
+  const passwordHash = await bcrypt.hash(password, 10);
 
   return passwordHash;
 };
