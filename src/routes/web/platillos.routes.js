@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createPlatillo, readPlatillos } from "../../controllers/web/platillo.controller";
+import { createPlatillo, readPlatillos } from "../../controllers/web/platillo.controller.js";
 const router = Router();
 
 router
