@@ -11,8 +11,24 @@ export class platillosService {
   } 
 
   async read(){
-    const [result] = await this.pool.query("SELECT * FROM PLATILLOS")
+    const [result] = await this.pool.query("SELECT * FROM PLATILLOS WHERE ESTADO = 1")
     return result;
+  }
+
+  async deletePlatillo(data){
+    if(data.Estado == 1){
+        const [result] = await this.pool.query("UPDATE PLATILLOS SET ESTADO = 0 WHERE ID_PLATILLO = ?", [data.Platillo])
+        return result
+    } else if(data.Estado== 0){
+        const [result] = await this.pool.query("UPDATE PLATILLOS SET ESTADO = 1 WHERE ID_PLATILLO = ?", [data.Platillo])
+        return result
+    }
+        
+  }
+
+  async updatePlatillo(data){
+    const [result] = await this.pool.query("UPDATE PLATILLOS SET NOMBRE = ?, DESCRIPCION = ?, PRECIO = ?, URL_IMG = ? WHERE ID_PLATILLO = ?", [data.Nombre, data.Descripcion, data.Precio, data.Url, data.Platillo]);
+    return result
   }
 
 }

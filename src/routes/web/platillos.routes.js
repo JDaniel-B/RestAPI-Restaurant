@@ -1,9 +1,11 @@
 import { Router } from "express";
-import { createPlatillo, readPlatillos } from "../../controllers/web/platillo.controller.js";
+import { createPlatillo, readPlatillos, estadoPlatillo, updatePlatillo } from "../../controllers/web/platillo.controller.js";
 const router = Router();
 
 router
-    .post('/createPlatillos', createPlatillo)
+    .post('/createPlatillo', createPlatillo)
     .get('/readPlatillos', readPlatillos)
+    .post('/updateEstado', estadoPlatillo)
+    .post('/updatePlatillo', updatePlatillo)
 
 export default router;

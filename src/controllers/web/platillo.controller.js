@@ -41,3 +41,30 @@ export const readPlatillos = async (req, res) => {
         })
     }
 }
+
+export const estadoPlatillo = async (req, res) => {
+    const data = req.body
+    try {
+        const result = service.deletePlatillo(data) 
+        res.send({
+            isValid:true, 
+            message:"Estado actualizado con exito"
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const updatePlatillo = async (req, res) => {
+    const data = req.body 
+    try {
+        const result = service.updatePlatillo(data)
+        res.send({
+            isValid:true, 
+            message:"Se actualizó correctamente"
+        })
+    } catch (err){
+        console.log(err)
+    }
+
+}
