@@ -7,8 +7,10 @@ const { SECRET_TOKEN } = process.env;
 
 const service = new platillosService();
 
-export const createPlatillo = async (res, req) => {
-    const data = req.body 
+export const createPlatillo = async (req, res) => {
+    const data = req.body ;
+
+    console.log(data)
     try{
         if(data){
             const result = service.create(data);
@@ -24,15 +26,17 @@ export const createPlatillo = async (res, req) => {
     }
 }
 
-export const readPlatillos = async (res, req) => {
+export const readPlatillos = async (req, res) => {
     try {
 
-        const result = service.read()
-        res.send(result)
+        const result = await service.read()
+        res.send({
+            error:false,
+            result})
 
     } catch (err) {
         console.log(err)
-        res.status(401).send({
+        res.send({
             message:"Error de servidor"
         })
     }
