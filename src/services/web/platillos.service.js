@@ -5,7 +5,7 @@ export class platillosService {
     this.pool = pool;
   }
   async create(data) {
-        const [result] = await this.pool.query("INSERT INTO PLATILLOS (NOMBRE, DESCRIPCION, PRECIO, ESTADO, URL_IMG, ID_USUARIO) VALUES (?, ?, ?, 1, ?, ?)", [data.Nombre, data.Descripcion, data.Precio, data.Url, data.User])
+        const [result] = await this.pool.query("INSERT INTO PLATILLOS (NOMBRE, DESCRIPCION, PRECIO, ESTADO, URL_IMG, ID_USUARIO, CATEGORIA) VALUES (?, ?, ?, 1, ?, ?, ?)", [data.Nombre, data.Descripcion, data.Precio, data.Url, data.User])
 
         return result;
   } 
@@ -27,7 +27,7 @@ export class platillosService {
   }
 
   async updatePlatillo(data){
-    const [result] = await this.pool.query("UPDATE PLATILLOS SET NOMBRE = ?, DESCRIPCION = ?, PRECIO = ?, URL_IMG = ? WHERE ID_PLATILLO = ?", [data.Nombre, data.Descripcion, data.Precio, data.Url, data.Platillo]);
+    const [result] = await this.pool.query("UPDATE PLATILLOS SET NOMBRE = ?, DESCRIPCION = ?, PRECIO = ?, URL_IMG = ?, CATEGORIA = ? WHERE ID_PLATILLO = ?", [data.Nombre, data.Descripcion, data.Precio, data.Url, data.Platillo, data.Categoria]);
     return result
   }
 
