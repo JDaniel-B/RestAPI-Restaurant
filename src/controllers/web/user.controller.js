@@ -1,11 +1,14 @@
 import { authService } from "../../services/web/auth.service.js";
 import { userService } from "../../services/web/user.service.js";
+import jwt from "jsonwebtoken";
+import { config } from "dotenv";
+config();
 import { generatePassword } from "../../utils/generate-password.js";
-
+const { SECRET_TOKEN } = process.env;
 const service = new userService();
 const serviceAuth = new authService();
 
-const find = async (req, res, next) => {
+export const find = async (req, res, next) => {
   try {
     const result = await service.find();
     res.send({
@@ -17,7 +20,7 @@ const find = async (req, res, next) => {
   }
 };
 
-const create = async (req, res, next) => {
+export const create = async (req, res, next) => {
   const data = req.body;
   try {
     const resultAuth = await serviceAuth.login(data);
@@ -40,4 +43,3 @@ const create = async (req, res, next) => {
   }
 };
 
-export { find, create };

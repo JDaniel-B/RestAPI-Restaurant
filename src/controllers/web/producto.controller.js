@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import { config } from "dotenv";
 import { productoService } from "../../services/web/producto.service.js";
 config();
-const { SECRET_TOKEN } = process.env;
+
 
 const service = new productoService;
 
