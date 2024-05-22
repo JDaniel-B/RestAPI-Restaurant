@@ -10,7 +10,6 @@ const service = new platillosService();
 export const createPlatillo = async (req, res) => {
     const data = req.body ;
 
-    console.log(data)
     try{
         if(data){
             const result = service.create(data);
@@ -25,6 +24,19 @@ export const createPlatillo = async (req, res) => {
         console.log(err)
     }
 }
+
+export const allPlatillos = async (req, res) => {
+    try{
+        const result = service.all()
+        res.send({
+            error:false, 
+            result
+        })
+        } catch(err){
+            console.log(err)
+        }
+    }
+
 
 export const readPlatillos = async (req, res) => {
     try {

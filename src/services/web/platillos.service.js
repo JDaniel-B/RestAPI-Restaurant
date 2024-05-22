@@ -10,6 +10,11 @@ export class platillosService {
         return result;
   } 
 
+  async all(){
+    const [result] = await this.pool.query("SELECT * FROM PLATILLOS")
+    return result
+  }
+
   async read(){
     const [result] = await this.pool.query("SELECT * FROM PLATILLOS WHERE ESTADO = 1")
     return result;
