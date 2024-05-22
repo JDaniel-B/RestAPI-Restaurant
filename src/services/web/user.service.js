@@ -17,4 +17,12 @@ export class userService {
     );
     return result;
   }
+
+  async getMe(id) {
+    const [result] = await this.pool.query(
+      `SELECT ID_USUARIO, NOMBRES, APELLIDOS, CORREO, NIVEL FROM USUARIOS WHERE ID_USUARIO = ?`,
+      [id]
+    );
+    return result;
+  }
 }

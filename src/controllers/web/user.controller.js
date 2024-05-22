@@ -30,12 +30,12 @@ export const create = async (req, res, next) => {
         message: "Este usuario ya esta registrado",
       });
     } else {
-      const {passwordHash, password} = await generatePassword();
+      const { passwordHash, password } = await generatePassword();
       const user = await service.create(data, passwordHash);
       return res.send({
         isValid: true,
         message: "Usuario Creado Exitosamente",
-        password
+        password,
       });
     }
   } catch (error) {
@@ -43,3 +43,13 @@ export const create = async (req, res, next) => {
   }
 };
 
+export const getMe = async (req, res, next) => {
+  const Cookie = req.cookies.Auth;
+  const decoded = jwt.decode(`${Cookie}`, SECRET_TOKEN);
+  try {
+    const user = await service.getMe(decoded?.ID);
+    res.send(user[0]);
+  } catch (error) {
+    next(error);
+  }
+};

@@ -30,7 +30,7 @@ const login = async (req, res, next) => {
         const token = jwt.sign(
           {
             name: `${result[0].NOMBRES} ${result[0].APELLIDOS}`,
-            ID: result[0].idUsuario,
+            ID: result[0].ID_USUARIO,
           },
           SECRET_TOKEN,
           { expiresIn: 84000 }
